@@ -1,17 +1,19 @@
 export function BookmarkCard({ weather }: { weather: Record<string, any> }) {
 
 	return (
-		<div className="bg-white rounded-2xl p-5">
+		<div className="bg-white rounded-2xl p-5 overflow-clip">
+
+			{/* Main informations */}
 			<div className="flex justify-between">
 				<div>
 					<div className="text-3xl font-semibold">{Math.round(weather.main.temp)}°</div>
 					<div className="text-base mt-2">{weather.name}</div>
 					<div className="text-sm text-slate-400">{weather.sys.country}</div>
 				</div>
-				<div>
-					<img src={process.env.REACT_APP_IMAGES_URL + `${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].main}/>
-				</div>
+				<img src={process.env.REACT_APP_IMAGES_URL + `${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].main}/>
 			</div>
+
+			{/* Humidity and wind speed */}
 			<div className="flex justify-between mt-2">
 				<div className="flex space-x-1 text-sm items-center">
 					<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

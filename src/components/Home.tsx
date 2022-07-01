@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
 import { getCurrentPosition, getWeather } from "../lib/utils"
+import { WeatherCard } from "./WeatherCard"
 
 export function Home() {
 
 	const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
 	const [errMessage, setErrMessage] = useState<string | null>(null)
+	const [weather, setWeather] = useState<Record<string, any>>({})
 
 	useEffect(() => {
 		getCurrentPosition(
@@ -31,7 +33,7 @@ export function Home() {
 
 	const fetchWeather = useCallback(async (latitude: number, longitude: number) => {
 		const data = await getWeather(latitude, longitude)
-		console.log(data)
+		setWeather(data)
 	}, [])
 
 	useEffect(() => {
@@ -55,6 +57,7 @@ export function Home() {
 	return (
 		<>
 			<ErrorDisplay />
+			<WeatherCard weather={weather} isCurrentLocation={true}/>
 		</>
 	)
 }

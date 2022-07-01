@@ -45,7 +45,7 @@ export async function getCityWeather(city: string): Promise<Record<string, any>>
 
 	const response = await fetch(url)
 	if (!response.ok)
-		throw new Error(response.statusText);
+		throw new Error('City could not be found :(');
 
 	return await response.json();
 }

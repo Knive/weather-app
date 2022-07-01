@@ -6,7 +6,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<div className="relative bg-[#fdfcf3] h-screen max-w-md mx-auto rounded-2xl overflow-y-auto pt-5">
 
 				{/* Body */}
-				<div className="px-5 overflow-y-auto" style={{ height: 'calc(100vh - 100px)' }}>
+				<div className="px-5 overflow-y-auto overflow-x-clip" style={{ height: 'calc(100vh - 100px)' }}>
 					{children}
 				</div>
 
