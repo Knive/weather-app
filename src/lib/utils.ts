@@ -1,3 +1,7 @@
+const apiKey = process.env.REACT_APP_API_KEY
+const lang = 'en'
+const units = 'metric'
+
 /**
  * Get user's current position
  * @param successCallback Success callback
@@ -22,10 +26,22 @@ export function getCurrentPosition(successCallback: PositionCallback, errorHandl
  */
 export async function getWeather(lat: number, lon: number): Promise<Record<string, any>> {
 
-	let apiKey = process.env.REACT_APP_API_KEY
-	let lang = 'en'
-	let units = 'metric'
 	let url = process.env.REACT_APP_API_URL + `onecall?lat=${lat}&lon=${lon}&units=${units}&lang=${lang}&appid=${apiKey}`
+
+	const response = await fetch(url)
+	if (!response.ok)
+		throw new Error(response.statusText);
+
+	return await response.json();
+}
+
+/**
+ * Gets the weather for a city
+ * @param city City
+ * @returns Weather data
+ */
+export async function getCityWeather(city: string): Promise<Record<string, any>> {
+	let url = process.env.REACT_APP_API_URL + `weather?q=${city}&units=${units}&lang=${lang}&appid=${apiKey}`
 
 	const response = await fetch(url)
 	if (!response.ok)
