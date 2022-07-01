@@ -1,0 +1,10 @@
+{
+	"css.lint.unknownAtRules": "ignore",
+	"[typescript]": {
+		"editor.autoIndent": "full",
+		"editor.detectIndentation": true,
+		"editor.formatOnSave": true,
+		"editor.trimAutoWhitespace": true,
+		"editor.tabSize": 4
+	}
+}
