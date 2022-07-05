@@ -60,6 +60,17 @@ export function Bookmarks() {
 		setSearchedCity(undefined)
 	}, [])
 
+	const flatWeathers = Object.values(weathers).map(w => w?.main?.temp)
+
+	const max = Math.max(...flatWeathers)
+	const min = Math.min(...flatWeathers)
+
+	const maxIndex = flatWeathers.indexOf(max)
+	const minIndex = flatWeathers.indexOf(min)
+
+	const maxCity = Object.keys(weathers)[maxIndex]
+	const minCity = Object.keys(weathers)[minIndex]
+
 	return (
 		<>
 			<div className="relative mb-5">
@@ -89,6 +100,11 @@ export function Bookmarks() {
 
 			{/* City searched */}
 			{searchedCity && <div className="mb-4"><WeatherCard weather={searchedCity} isCurrentLocation={false} onAdd={addHandler} /></div>}
+
+			<div className="my-5 p-5 bg-white rounded-lg">
+				<div>Min: {min} ({minCity})</div>
+				<div>Max: {max} ({maxCity})</div>
+			</div>
 
 			{/* Bookmarks list */}
 			<div className="grid grid-cols-2 auto-rows-max gap-4">
